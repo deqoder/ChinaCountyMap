@@ -1,6 +1,3 @@
-# ChinaDistrictMap
-china's district svg map
+* fork自[greatpp/ChinaDistrictMap](https://github.com/greatpp/ChinaDistrictMap)
 
-中国县级行政图<br>
-svg实现<br>
-d3.js实现缩放<br>
+* 中国分县区划图，[在线预览](https://deqoder.github.io/ChinaCountyMap/chinamap.html)
