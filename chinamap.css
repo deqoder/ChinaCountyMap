@@ -33,7 +33,7 @@
 }
 
 .huang {
-    fill: #FFFF00;
+    fill: #cccc00;
 }
 
 .lv {
@@ -50,4 +50,7 @@
 
 .zi {
     fill: #8B00FF;
+}
+.tooltipfont {
+ font: 50px sans-serif;
 }

@@ -11,6 +11,7 @@
     <div id="china-outer">
         <svg xmlns="http://www.w3.org/2000/svg" class="china">
             <g id="g_all" transform="scale(0.12)">
+                
                 <!--transform="translate(-17.4995 -1.30404) scale(0.125)"-->
                 <!--新疆-->
                 <g>
@@ -5978,9 +5979,12 @@
                         <path data-cityname="澳门" data-cityid="101330101" class="hong" d="M5562.5,5728L5562.5,5735L5572.25,5745.75L5575.5,5745.75L5575.5,5736.875L5570.75,5732.25L5570.25,5728Z" />
                     </g>
                 </g>
+                <text id='tooltip' class='tooltipfont'> hello world</text>
             </g>
+            
         </svg>
     </div>
+
     <script type="text/javascript">
         var svg = d3.select("svg");
         var g = svg.select("#g_all");
@@ -6010,6 +6014,26 @@
             g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
         }
         svg.call(zoom);
+    </script>
+    <script>
+    function makeHref(linkprefix, name) {
+    	return "<a href = \"" + linkprefix + name + "\">" + name + "</a>";
+    }
+    function business(pathobj) {
+   	$("#tooltip").html(makeHref('https://zh.wikipedia.org/wiki/' ,   pathobj.attr('data-cityname'))); 
+   	var draw = pathobj.attr('d');
+   	var i1 = draw.indexOf('M');
+   	var draws = draw.substring(i1 + 1);
+   	var i2 = draws.search(/[a-zA-Z]/);
+   	var xy = draws.substring(0, i2);
+   	var arr = xy.split(',');   	
+   	//console.log(arr)
+   	$("#tooltip").attr("x", arr[0]);
+   	$("#tooltip").attr("y", arr[1]);
+   }
+    $("path").hover(function() {
+    	business($(this));
+    });
     </script>
 </body>
 </html>
