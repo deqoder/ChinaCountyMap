@@ -6032,8 +6032,19 @@
    	$("#tooltip").attr("y", arr[1]);
    }
     $("path").hover(function() {
-    	business($(this));
+    		
     });
+    var g_old_class;
+    $('path').mouseenter(function () {
+    		g_old_class = $(this).attr('class');
+    		
+    		$(this).attr('class', 'bai');
+    		business($(this));
+    });
+
+    $('path').mouseleave(function () {
+    		$(this).attr('class', g_old_class);
+     });
     </script>
 </body>
 </html>
