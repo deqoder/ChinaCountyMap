@@ -1,0 +1,26 @@
+﻿#china-outer {
+    width: 960px;
+    height: 782px;
+    border-color: blue;
+    border-style: dashed;
+    border-width: 1px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.china {
+    width: 960px;
+    height: 782px;
+}
+
+.graticule {
+    fill: none;
+    stroke: #777;
+    stroke-width: 5px;
+}
+
+.tooltipfont {
+ font: 50px sans-serif;
+ fill: #ff0000;
+}
