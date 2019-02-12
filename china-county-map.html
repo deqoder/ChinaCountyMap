@@ -6021,7 +6021,11 @@
     	return "<a href = \"" + linkprefix + name + "\">" + name + "</a>";
     }
     function business(pathobj) {
-   	$("#tooltip").html(makeHref('https://zh.wikipedia.org/wiki/' ,   pathobj.attr('data-cityname'))); 
+    	var href = (pathobj.attr('data-link') === undefined 
+    		? ''
+    		: (': ' + pathobj.attr('data-link'))
+    	);
+   	$("#tooltip").html(makeHref('https://zh.wikipedia.org/wiki/' ,   pathobj.attr('data-cityname'))  + href); 
    	var draw = pathobj.attr('d');
    	var i1 = draw.indexOf('M');
    	var draws = draw.substring(i1 + 1);
@@ -6032,15 +6036,32 @@
    	$("#tooltip").attr("x", arr[0]);
    	$("#tooltip").attr("y", arr[1]);
    }
+   function init_data() {
+    	for (var i = 0; i < jsondata.length; i++) {
+    		$("path[data-cityname='" + jsondata[i].county + "']").attr('fill', jsondata[i].color);
+    		var datalink = "";
+    		for (var j = 0; j < jsondata[i].links.length; j++) {
+    			if (j != 0) {
+    				datalink += "/";
+    			}
+    			datalink += makeHref(jsondata[i].links[j].link, jsondata[i].links[j].name);
+  		}
+    		$("path[data-cityname='" + jsondata[i].county + "']").attr('data-link', datalink);
+    	}
+    }
+    init_data();
     $("path").hover(function() {
     	business($(this));
     });
+    var old_color;
     $('path').mouseenter(function() {
+    	old_color = $(this).css('fill');
     	$(this).css('fill', '#aaa');
     });
     $('path').mouseleave(function() {
-    	$(this).css('fill', '#000');
+    	$(this).css('fill', old_color);
     });
+
     </script>
 </body>
 </html>
