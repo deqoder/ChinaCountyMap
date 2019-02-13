@@ -5997,11 +5997,12 @@
                         .projection(projection);
 
         // Append the graticule
+        /*
         g.append("path")
           .datum(d3.geo.graticule())
           .attr("class", "graticule")
           .attr("d", greatCircle);
-
+*/
         var zoom = d3.behavior
                        .zoom()
                        .on("zoom", zoomTransform);
@@ -6017,15 +6018,18 @@
     </script>
     <script src='./china-county-map-data.js'></script>
     <script>
-    function makeHref(linkprefix, name) {
-    	return "<a href = \"" + linkprefix + name + "\">" + name + "</a>";
+    function makeHref(link, name) {
+    	return "<a href = \"" + link + "\">" + name + "</a>";
+    }
+    function makeHrefRel(linkprefix, name) {
+    	return makeHref(linkprefix + name, name);
     }
     function business(pathobj) {
     	var href = (pathobj.attr('data-link') === undefined 
     		? ''
     		: (': ' + pathobj.attr('data-link'))
     	);
-   	$("#tooltip").html(makeHref('https://zh.wikipedia.org/wiki/' ,   pathobj.attr('data-cityname'))  + href); 
+   	$("#tooltip").html(makeHrefRel('https://zh.wikipedia.org/wiki/' ,   pathobj.attr('data-cityname'))  + href); 
    	var draw = pathobj.attr('d');
    	var i1 = draw.indexOf('M');
    	var draws = draw.substring(i1 + 1);
